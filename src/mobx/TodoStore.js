@@ -26,15 +26,15 @@ export class TodoStore {
         this.todos.push(new Todo(value))
     }
 
-    clearComplete = () => {
-        /*arrow function always fire within correct context and can't really change
+    clearComplete = () => {//why not use computed?
+        /*
+        arrow function always fire within correct context and can't really change
         this.todos,one of big differences between observable arrays and plain arrays
         they act almost the same in every way excepet for we can't erase it, can't
         just point to a new object because then the reference is actually messed up
         we have lost all our reactivity at that point.
         so what they do is they give you a replace method so I can call to do is replace
         which can now replace it with a new set of todos.
-
         */
         const incompleteTodos = this.todos.filter(todo => !todo.complete)
         this.todos.replace(incompleteTodos);
