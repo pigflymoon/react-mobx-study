@@ -8,7 +8,7 @@ class Todo {
     constructor(value) {
         this.value = value
         this.id = Date.now()
-        this.complete = true
+        this.complete = false
     }
 }
 

@@ -2,22 +2,27 @@ import React from "react"
 import {observer} from 'mobx-react'
 @observer
 export default class TodoList extends React.Component {
-    
-   createNew = (e) => {
-       if(e.which === 13){
-           this.props.store.createTodo(e.target.value)
-           e.target.value = ""
-       }
-   }
+
+    createNew = (e) => {
+        if (e.which === 13) {
+            this.props.store.createTodo(e.target.value)
+            e.target.value = ""
+        }
+    }
     filter = (e) => {
         this.props.store.filter = e.target.value
     }
-    
+
+    toggleComplete = (todo) => (e) => {
+        todo.complete = !todo.complete
+    }
+
     render() {
-        const {filter,filteredTodos} =this.props.store
-        const todoList = filteredTodos.map((todo,i) => (
+        const {filter, filteredTodos} =this.props.store
+        const todoList = filteredTodos.map((todo, i) => (
             <li key={todo.id}>
-                <input type="checkbox" value={todo.complete} checked={todo.complete}/>
+                <input type="checkbox" onChange={this.toggleComplete(todo)} value={todo.complete}
+                       checked={todo.complete}/>
                 {todo.value}
             </li>
         ))
