@@ -18,7 +18,7 @@ export default class TodoList extends React.Component {
     }
 
     render() {
-        const {filter, filteredTodos} =this.props.store
+        const {clearComplete, filter, filteredTodos} =this.props.store
         const todoList = filteredTodos.map((todo, i) => (
             <li key={todo.id}>
                 <input type="checkbox" onChange={this.toggleComplete(todo)} value={todo.complete}
@@ -32,6 +32,7 @@ export default class TodoList extends React.Component {
             <input className="create" onKeyPress={this.createNew}/>
             <input className="filter" value={filter} onChange={this.filter}/>
             <ul>{todoList}</ul>
+            <a href="#" onClick={clearComplete}>Clear Complete</a>
         </div>
     }
 }
